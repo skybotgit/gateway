@@ -1,0 +1,45 @@
+{% include "includes/header.html" %}
+<section data-ui-view="" class="view-container animate-fade-up" style="">
+    <section class="page-settings page grid-system ng-scope">
+        <div class="row ui-section ng-scope">
+            <div class="col-lg-8 clearfix"><h2 class="section-header ng-binding">Hotspot Settings</h2></div>
+            <div class="col-md-12">
+                <section class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <form class="form-horizontal ng-pristine ng-valid" method="post">
+                                    <div class="form-group ng-scope">
+                                        <label for="setting-hotspot-ssid" class="col-sm-5 ng-binding">Hotspot SSID</label>
+                                        <div class="col-sm-6">
+                                            <input id="setting-hotspot-ssid" type="text" value="{{results.hotspot_ssid}}" name="hotspot_ssid"
+                                                   class="form-control ng-scope">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label for="setting-hotspot-password" class="col-sm-5 ng-binding">Hotspot
+                                            Password</label>
+                                        <div class="col-sm-6">
+                                            <input id="setting-hotspot-password" type="text" value="{{results.hotspot_password}}"
+                                                   name="hotspot_password" class="form-control ng-scope">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label for="setting-hotspot-submit" class="col-sm-5 ng-binding"></label>
+                                        <div class="col-sm-6">
+                                            <button id="setting-hotspot-submit"
+                                                    class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple"
+                                                    type="submit" aria-label="Save"><span
+                                                    class="ng-scope">Save</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+{% include "includes/footer.html" %}

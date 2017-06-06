@@ -1,0 +1,96 @@
+{% include "includes/header.html" %}
+<section data-ui-view="" class="view-container animate-fade-up" style="">
+    <section class="page-settings page grid-system ng-scope">
+        <div class="row ui-section ng-scope">
+            <div class="col-lg-8 clearfix"><h2 class="section-header ng-binding">WiFi Settings</h2></div>
+            <div class="col-md-12">
+                <section class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <form class="form-horizontal ng-pristine ng-valid" method="post">
+                                    <div class="form-group ng-scope">
+                                        <label for="setting-wifi-ssid" class="col-sm-5 ng-binding">WiFi SSID</label>
+                                        <div class="col-sm-6">
+                                            <input id="setting-wifi-ssid" type="text" value="{{results.wifi_ssid}}" name="wifi_ssid"
+                                                   class="form-control ng-scope">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label for="setting-wifi-psk" class="col-sm-5 ng-binding">WiFi
+                                            Password</label>
+                                        <div class="col-sm-6">
+                                            <input id="setting-wifi-psk" type="password" value="{{results.wifi_psk}}"
+                                                   name="wifi_psk" class="form-control ng-scope">
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group ng-scope">-->
+                                        <!--<label for="setting-wifi-proto" class="col-sm-5 ng-binding">WiFi-->
+                                            <!--Proto</label>-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<select id="setting-wifi-proto" value="{{results.wifi_proto}}"-->
+                                                   <!--name="wifi_proto" class="form-control ng-scope">-->
+                                                <!--<option value="RSN" {% if results.wifi_proto == "RSN" %} selected="selected" {% endif %}>RSN (WPA2) Default</option>-->
+                                                <!--<option value="WPA" {% if results.wifi_proto == "WPA" %} selected="selected" {% endif %}>WPA (WPA1)</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group ng-scope">-->
+                                        <!--<label for="setting-wifi-key-mgmt" class="col-sm-5 ng-binding">WiFi-->
+                                            <!--Key Management</label>-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<select id="setting-wifi-key-mgmt" value="{{results.key_mgmt}}"-->
+                                                   <!--name="wifi_key_mgmt" class="form-control ng-scope">-->
+                                                <!--<option value="WPA-PSK" {% if results.wifi_key_mgmt == "WPA-PSK" %} selected="selected" {% endif %}>WPA-PSK Default</option>-->
+                                                <!--<option value="WPA-EAP" {% if results.wifi_key_mgmt == "WPA-EAP" %} selected="selected" {% endif %}>WPA-EAP</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group ng-scope">-->
+                                        <!--<label for="setting-pairwise" class="col-sm-5 ng-binding">WiFi-->
+                                            <!--Pairwise</label>-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<select id="setting-pairwise" value="{{results.wifi_proto}}"-->
+                                                   <!--name="wifi_pairwise" class="form-control ng-scope">-->
+                                                <!--<option value="TKIP" {% if results.wifi_pairwise == "TKIP" %} selected="selected" {% endif %}>TKIP (WPA1) Default</option>-->
+                                                <!--<option value="CCMP" {% if results.wifi_pairwise == "CCMP" %} selected="selected" {% endif %}>CCMP (WPA2)</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group ng-scope">-->
+                                        <!--<label for="setting-auth-alg" class="col-sm-5 ng-binding">WiFi-->
+                                            <!--Auth Alg</label>-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<select id="setting-auth-alg" value="{{results.wifi_proto}}"-->
+                                                   <!--name="wifi_auth_alg" class="form-control ng-scope">-->
+                                                <!--<option value="OPEN" {% if results.wifi_auth_alg == "OPEN" %} selected="selected" {% endif %}>OPEN Default</option>-->
+                                                <!--<option value="LEAP" {% if results.wifi_auth_alg == "LEAP" %} selected="selected" {% endif %}>LEAP</option>-->
+                                                <!--<option value="SHARED" {% if results.wifi_auth_alg == "SHARED" %} selected="selected" {% endif %}>SHARED</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <div class="form-group ng-scope">
+                                        <label for="setting-wifi-submit" class="col-sm-5 ng-binding"></label>
+                                        <div class="col-sm-6">
+                                            <button id="setting-wifi-submit"
+                                                    class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple"
+                                                    type="submit" aria-label="Save"><span
+                                                    class="ng-scope">Save</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding"></label>
+                                        <div class="col-sm-6">
+                                            Note: Skybot gateway will restart upon updating wifi settings.
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+{% include "includes/footer.html" %}

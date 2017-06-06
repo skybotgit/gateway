@@ -1,0 +1,51 @@
+{% include "includes/header.html" %}
+<section data-ui-view="" class="view-container animate-fade-up" style="">
+    <section class="page-settings page grid-system ng-scope">
+        <div class="row ui-section ng-scope">
+            <div class="col-lg-8 clearfix"><h2 class="section-header ng-binding">Product Settings</h2></div>
+            <div class="col-md-12">
+                <section class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <form class="form-horizontal ng-pristine ng-valid" method="post">
+                                    <div class="form-group ng-scope">
+                                        <label for="product-email" class="col-sm-5 ng-binding">Skybot Email</label>
+                                        <div class="col-sm-6">
+                                            <input id="product-email" type="email" value="{{results.email}}" name="email"
+                                                   class="form-control ng-scope">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label for="product-password" class="col-sm-5 ng-binding">Skybot Password</label>
+                                        <div class="col-sm-6">
+                                            <input id="product-password" type="password" value="{{results.password}}" name="password"
+                                                   class="form-control ng-scope">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label for="product-product-id" class="col-sm-5 ng-binding">Skybot Product ID</label>
+                                        <div class="col-sm-6">
+                                            <input id="product-product-id" type="text" value="{{results.product_id}}" name="product_id"
+                                                   class="form-control ng-scope">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label for="product-submit" class="col-sm-5 ng-binding"></label>
+                                        <div class="col-sm-6">
+                                            <button id="product-submit"
+                                                    class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple"
+                                                    type="submit" aria-label="Save"><span
+                                                    class="ng-scope">Save</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+{% include "includes/footer.html" %}

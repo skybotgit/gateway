@@ -1,0 +1,177 @@
+{% include "includes/header.html" %}
+<section data-ui-view="" class="view-container animate-fade-up" style="">
+    <section class="page-settings page grid-system ng-scope">
+        <div class="row ui-section ng-scope">
+            <div class="col-lg-8 clearfix"><h2 class="section-header ng-binding">System Health</h2></div>
+            <div class="col-md-12">
+                <section class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <form class="form-horizontal ng-pristine ng-valid">
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Redis Installed</label>
+                                        <div class="col-sm-6">
+                                            {% if results.redis_installation.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.redis_installation.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.redis_installation.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Redis Running</label>
+                                        <div class="col-sm-6">
+                                            {% if results.redis_running.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.redis_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.redis_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Mosquitto Installed</label>
+                                        <div class="col-sm-6">
+                                            {% if results.mqtt_installation.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.mqtt_installation.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.mqtt_installation.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Mosquitto Running</label>
+                                        <div class="col-sm-6">
+                                            {% if results.mqtt_running.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.mqtt_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.mqtt_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">SqLITE Installed</label>
+                                        <div class="col-sm-6">
+                                            {% if results.sqlite_installation.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.sqlite_installation.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.sqlite_installation.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">SqLITE DB Present</label>
+                                        <div class="col-sm-6">
+                                            {% if results.sqlite_file.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.sqlite_file.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.sqlite_file.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Supervisor Installed</label>
+                                        <div class="col-sm-6">
+                                            {% if results.supervisor_installation.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.supervisor_installation.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.supervisor_installation.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Supervisor Running</label>
+                                        <div class="col-sm-6">
+                                            {% if results.supervisor_running.status %}
+                                            <span class="status alert-success">Yes</span>
+                                            <span>{{results.supervisor_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">No</span>
+                                            <span>{{results.supervisor_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Server to Receiver Flow</label>
+                                        <div class="col-sm-6">
+                                            {% if results.s2r_running.status %}
+                                            <span class="status alert-success">Running</span>
+                                            <span>{{results.s2r_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">Stopped</span>
+                                            <span>{{results.s2r_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Receiver to Server Flow</label>
+                                        <div class="col-sm-6">
+                                            {% if results.r2s_running.status %}
+                                            <span class="status alert-success">Running</span>
+                                            <span>{{results.r2s_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">Stopped</span>
+                                            <span>{{results.r2s_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Offline Flow</label>
+                                        <div class="col-sm-6">
+                                            {% if results.offline_running.status %}
+                                            <span class="status alert-success">Running</span>
+                                            <span>{{results.offline_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">Stopped</span>
+                                            <span>{{results.offline_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">HeartBeat</label>
+                                        <div class="col-sm-6">
+                                            {% if results.heartbeat_running.status %}
+                                            <span class="status alert-success">Running</span>
+                                            <span>{{results.heartbeat_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">Stopped</span>
+                                            <span>{{results.heartbeat_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group ng-scope">
+                                        <label class="col-sm-5 ng-binding">Hotspot Program</label>
+                                        <div class="col-sm-6">
+                                            {% if results.hotspot_running.status %}
+                                            <span class="status alert-success">Running</span>
+                                            <span>{{results.hotspot_running.message}}</span>
+                                            {% else %}
+                                            <span class="status alert-danger">Stopped</span>
+                                            <span>{{results.hotspot_running.message}}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+{% include "includes/footer.html" %}

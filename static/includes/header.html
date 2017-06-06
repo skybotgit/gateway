@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <title>SkyBot - Your Smart Home Automation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/angular-material.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ui.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+</head>
+<body id="app" class="app ng-scope" data-custom-page="">
+<header id="header" class="header-container ng-scope header-fixed"
+        data-ng-class="{ 'header-fixed': true}" style="">
+    <header class="top-header clearfix ng-scope">
+        <div ui-preloader=""></div>
+        <div class="logo bg-primary"><a href="../index.html"><img
+                src="{{ url_for('static', filename='images/logo.png') }}"
+                class="img80_80 ng-scope"></a>
+        </div>
+        <div class="menu-button" toggle-off-canvas=""><span class="icon-bar"></span> <span class="icon-bar"></span>
+            <span class="icon-bar"></span></div>
+        <div class="top-nav">
+            <ul class="nav-left list-unstyled">
+                <li><a class="toggle-min md-button md-ink-ripple" ng-transclude="" href="#/"
+                       data-toggle-nav-collapsed-min="" md-button="" aria-label="toggle-nav-collapsed-min"><i
+                        class="fa fa-navicon ng-scope"></i></a></li>
+            </ul>
+            <ul class="nav-left list-unstyled">
+                <li><h3 class="ng-binding">SkyBot</h3></li>
+            </ul>
+            <ul class="nav-right pull-right list-unstyled">
+                <li class="dropdown text-normal nav-profile" uib-dropdown="" is-open="status.isopenProfile" style=""><a
+                        href="/logout">
+                    <i class="fa fa-sign-out"></i><span class="ng-scope">Logout</span></a>
+                    <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+</header>
+<div class="main-container" data-ng-class="{ 'app-nav-horizontal': false }">
+    <aside data-ng-include="'client/app/directive/sidebar.html'" id="nav-container"
+           class="nav-container ng-scope nav-fixed bg-dark"
+           data-ng-class="{'nav-fixed': true,'bg-white': false,'bg-dark': true}" style="">
+        <div class="nav-wrapper ng-scope">
+            <ul id="nav" class="nav" data-collapse-nav="" data-highlight-active="">
+                <div class="divider divider-sm"></div>
+                <li>
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                                      href="/dashboard">
+                        <i class="fa fa-home ng-scope"></i>
+                        <span data-translate="Dashboard" class="ng-scope">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                                      href="/schedules">
+                        <i class="fa fa-home ng-scope"></i>
+                        <span data-translate="Schedules" class="ng-scope">Schedules</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                                      href="/button-schedules">
+                        <i class="fa fa-home ng-scope"></i>
+                        <span data-translate="Button Schedules" class="ng-scope">Button Schedules</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li class="">
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                       href="/product">
+                        <i class="fa fa-plus ng-scope"></i>
+                        <span class="ng-scope">Product Settings</span>
+                        <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                       href="/wifi">
+                        <i class="fa fa-plus ng-scope"></i>
+                        <span class="ng-scope">Wifi Settings</span>
+                        <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                       href="/logs">
+                        <i class="fa fa-plus ng-scope"></i>
+                        <span class="ng-scope">Logs</span>
+                        <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                       href="/health">
+                        <i class="fa fa-plus ng-scope"></i>
+                        <span class="ng-scope">Health Check</span>
+                        <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li class="">
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                       href="/upgrade">
+                        <i class="fa fa-plus ng-scope"></i>
+                        <span class="ng-scope">Upgrade</span>
+                        <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li class="">
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                       href="/change-password">
+                        <i class="fa fa-plus ng-scope"></i>
+                        <span class="ng-scope">Change Password</span>
+                        <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a class="md-button md-ink-ripple" aria-label="meanu"
+                       href="/logout">
+                        <i class="fa fa-plus ng-scope"></i>
+                        <span class="ng-scope">Logout</span>
+                        <div class="md-ripple-container"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div id="content" class="content-container"><!-- uiView: -->
+        {% if errors|length > 0 %}
+    <div class="alert alert-danger ng-binding ng-scope">
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if success|length > 0 %}
+    <div class="alert alert-success ng-binding ng-scope">
+        <ul>
+            {% for suc in success %}
+            <li>{{ suc }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}

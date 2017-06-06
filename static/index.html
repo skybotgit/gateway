@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <title>SkyBot - Your Smart Home Automation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/angular-material.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ui.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+
+<body id="app" class="app ng-scope body-wide body-auth" data-ng-app="app" data-ng-controller="AppCtrl"
+      data-custom-page="" data-ng-class="{ 'layout-boxed': false,'nav-collapsed-min': mainApp.isMenuCollapsed}">
+<header data-ng-include="'client/app/directive/header.html'" id="header" class="header-container ng-scope header-fixed"
+        data-ng-class="{ 'header-fixed': true}">
+    <header class="top-header clearfix ng-scope">
+        <div ui-preloader=""></div>
+        <div class="logo bg-primary"><a href="index.html"><img src="{{ url_for('static', filename='images/logo.png') }}"
+                                                               class="img80_80 ng-scope"></a></div>
+        <div class="menu-button" toggle-off-canvas=""><span class="icon-bar"></span> <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </div>
+    </header>
+</header>
+<div class="main-container" data-ng-class="{ 'app-nav-horizontal': false }">
+    <div id="content" class="content-container"><!-- uiView: -->
+        <section data-ui-view="" class="view-container animate-fade-in">
+            <div class="page-signin ng-scope" ng-controller="signInCtrl">
+                <div class="page-bg-body"><a href="index.html"><img
+                        src="{{ url_for('static', filename='images/logo.png') }}"
+                        class="auth-logo img-circle img120_120 ng-scope"></a>
+                    <div class="page-top-bg"></div>
+                </div>
+                <div class="wrapper">
+                    <div class="main-body">
+                        <div class="additional-info">
+                            <h3>SkyBot</h3>
+                            <h4>Your Smart Home Automation System</h4></div>
+                        <br>
+
+                        {% if errors|length  > 0 %}
+                        <div class="alert alert-danger ng-binding ng-scope" ng-if="error_message">
+                            <ul>
+                                {% for error in errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+
+                        <div class="card bg-white">
+                            <div class="card-content">
+                                <form name="signin_details_form" method="post"
+                                      class="form-horizontal form-validation ng-pristine ng-valid ng-valid-email ng-valid-required ng-valid-pattern"
+                                      novalidate="">
+                                    <fieldset>
+                                        <div class="divide divider-lg"></div>
+                                        <md-input-container class="md-block md-input-has-value"><label for="input_0">Username</label>
+                                            <input type="text" required="" name="username"
+                                                   class="ng-pristine ng-untouched ng-valid md-input ng-not-empty ng-valid-email ng-valid-required ng-valid-pattern"
+                                                   id="input_0" aria-invalid="false">
+                                            <div class="md-errors-spacer"></div>
+                                            <!-- ngIf: signin_details_form.email.$dirty --></md-input-container>
+                                        <md-input-container class="md-block md-input-has-value"><label for="input_1">Password</label>
+                                            <input required="" type="password" name="password"
+                                                   class="ng-pristine ng-untouched ng-valid md-input ng-not-empty ng-valid-required"
+                                                   id="input_1" aria-invalid="false">
+                                            <div class="md-errors-spacer"></div>
+                                        </md-input-container>
+                                        <button class="md-raised btn-w-md md-primary btn-block btn-lg md-button ng-scope md-ink-ripple"
+                                                type="submit" aria-label="Sign In"><span
+                                                class="ng-scope">Sign In</span></button>
+                                        <div class="panel-body text-center">
+                                            <a href="#/page/signup">
+                                                <span class="text-muted ng-binding">Default credentials {{results.default_username}} / {{results.default_password}}</span>
+                                            </a>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-bottom-bg">
+                    <div class="grid-structure">
+                        <div class="row">
+                            <p class="copyrights ng-binding">2017 Alfaone.in. All Rights
+                                Reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

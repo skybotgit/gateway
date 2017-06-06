@@ -1,0 +1,57 @@
+{% include "includes/header.html" %}
+<section data-ui-view="" class="view-container animate-fade-up">
+    <div class="page page-dashboard ng-scope" data-ng-controller="DashboardCtrl">
+        <div class="clearfix"><h2 class="section-header ng-binding">Individual Button Schedules</h2></div>
+        <!-- ngIf: schedule -->
+        <div ng-if="schedule" class="schedule-data ng-scope">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="panel-body text-center color-gray">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-responsive table-hover">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <div class="th">Sr. No.</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Receiver Mac Id</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Button Number</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Scheduled Time</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Status</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Speed</div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% if results.button_schedules|length > 0 %}
+                                {% for button_schedule in results.button_schedules %}
+                                <tr>
+                                    <td>{{button_schedule['id']}}</td>
+                                    <td>{{button_schedule['receiver_mac_id']}}</td>
+                                    <td>{{button_schedule['number']}}</td>
+                                    <td>{{button_schedule['hour']}}:{{button_schedule['minute']}} {{button_schedule['am_pm']}}</td>
+                                    <td>{{ 'ON' if button_schedule['status'] == True else 'OFF' }}</td>
+                                    <td>{{button_schedule['speed']}}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{% include "includes/footer.html" %}

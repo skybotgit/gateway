@@ -1,0 +1,24 @@
+{% include "includes/header.html" %}
+<script type="text/javascript">
+    window.onload = function() { window.scrollTo(0, document.body.scrollHeight); };
+    window.setTimeout( function() { window.location.href=window.location.href; },3000);
+</script>
+<section data-ui-view="" class="view-container animate-fade-up" style="">
+    <section class="page-settings page grid-system ng-scope">
+        <div class="row ui-section ng-scope">
+            <div class="col-lg-8 clearfix"><h2 class="section-header ng-binding">Logs</h2></div>
+            <div class="col-md-12">
+                <a href="/logs" class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple">Refresh</a>
+                <a href="/clear-logs" class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple">Clear Logs</a>
+                <section class="panel panel-default">
+                    <div class="panel-body">
+                        {{logdata}}
+                    </div>
+                </section>
+                <a href="/logs" class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple">Refresh</a>
+                <a href="/clear-logs" class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple">Clear Logs</a>
+            </div>
+        </div>
+    </section>
+</section>
+{% include "includes/footer.html" %}

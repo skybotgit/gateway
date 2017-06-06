@@ -1,0 +1,106 @@
+{% include "includes/header.html" %}
+<section data-ui-view="" class="view-container animate-fade-up">
+    <div class="page page-dashboard ng-scope" data-ng-controller="DashboardCtrl">
+        <div class="clearfix"><h2 class="section-header ng-binding">Schedules</h2></div>
+        <!-- ngIf: schedule -->
+        <div ng-if="schedule" class="schedule-data ng-scope">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="panel-body text-center color-gray">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-responsive table-hover">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <div class="th">Sr. No.</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Schedule Name</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Status</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Order</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Scheduled From</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Scheduled Time</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Repeat</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Repeat Days (Sun to Sat)</div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% if results.schedules|length > 0 %}
+                                {% for schedules in results.schedules %}
+                                <tr>
+                                    <td>{{schedules['id']}}</td>
+                                    <td>{{schedules['name']}}</td>
+                                    <td>{{ 'ON' if schedules['status'] == True else 'OFF' }}</td>
+                                    <td>{{schedules['order']}}</td>
+                                    <td>{{schedules['created_date']}}</td>
+                                    <td>{{schedules['hour']}}:{{schedules['minute']}} {{schedules['am_pm']}}</td>
+                                    <td>{{ 'ON' if schedules['repeat'] == True else 'OFF' }}</td>
+                                    <td>[ {{ 'ON' if schedules['sunday'] == True else 'OFF' }}, {{ 'ON' if schedules['monday'] == True else 'OFF' }}, {{ 'ON' if schedules['tuesday'] == True else 'OFF' }}, {{ 'ON' if schedules['wednesday'] == True else 'OFF' }}, {{ 'ON' if schedules['thursday'] ==
+                                        True else 'OFF' }}, {{ 'ON' if schedules['friday'] == True else 'OFF' }}, {{ 'ON' if schedules['saturday'] == True else 'OFF' }}]
+                                    </td>
+                                </tr>
+                                {% if schedules.buttons|length > 0 %}
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="6">
+                                        <table class="table table-bordered table-striped table-responsive table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    <div class="th">ID</div>
+                                                </th>
+                                                <th>
+                                                    <div class="th">Receiver Mac Id</div>
+                                                </th>
+                                                <th>
+                                                    <div class="th">Button Number</div>
+                                                </th>
+                                                <th>
+                                                    <div class="th">Status</div>
+                                                </th>
+                                                <th>
+                                                    <div class="th">Speed</div>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for button in schedules.buttons %}
+                                            <tr>
+                                                <td>{{button['id']}}</td>
+                                                <td>{{button['receiver_mac_id']}}</td>
+                                                <td>{{button['number']}}</td>
+                                                <td>{{ 'ON' if button['status'] == True else 'OFF' }}</td>
+                                                <td>{{schedules['speed']}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{% include "includes/footer.html" %}

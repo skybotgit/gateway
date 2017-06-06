@@ -1,0 +1,90 @@
+{% include "includes/header.html" %}
+<section data-ui-view="" class="view-container animate-fade-up">
+    <div class="page page-dashboard ng-scope" data-ng-controller="DashboardCtrl">
+        <div class="clearfix"><h2 class="section-header ng-binding">Receivers </h2></div>
+        <!-- ngIf: schedule -->
+        <div ng-if="schedule" class="schedule-data ng-scope">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="panel-body text-center color-gray">
+                        <div class="row">
+                            <div class="col-lg-10">
+                            </div>
+                            <div class="col-lg-2">
+                                <a href="/product-refresh"
+                                   class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple">Refresh</a>
+                            </div>
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-responsive table-hover">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <div class="th">Sr. No.</div>
+                                    </th>
+                                    <th>
+                                        <div class="th">Receiver Mac ID</div>
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        Number
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        Status
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        Desired Status
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        Speed
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        child Lock
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        Ack Status
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        Updated By
+                                    </th>
+                                    <th>
+                                        <div class="th"></div>
+                                        Updated At
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% if results.buttons|length > 0 %}
+                                {% for button in results.buttons %}
+                                <tr>
+                                    <td>{{button['id']}}</td>
+                                    <td>{{button['receiver_mac_id']}}</td>
+                                    <td>{{button['number']}}</td>
+                                    <td>{{ 'ON' if button['status'] == True else 'OFF' }}</td>
+                                    <td>{{ 'ON' if button['desired_status'] == True else 'OFF' }}</td>
+                                    <td>{{button['speed']}}</td>
+                                    <td>{{ 'ON' if button['child_lock'] == True else 'OFF' }}</td>
+                                    <td>{{button['ack_status']}}</td>
+                                    <td>{{button['updated_by']}}</td>
+                                    <td>{{ button['updated_at'] }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{% include "includes/footer.html" %}
