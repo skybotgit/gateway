@@ -19,6 +19,9 @@ sudo ifdown wlan0 >>/dev/null 2>&1
 sudo ifup wlan0 >>/dev/null 2>&1
 sudo ifup wlan0 >>/dev/null 2>&1
 sudo hotspotd start >>/dev/null 2>&1
-sudo supervisorctl stop hotspot.py >>/dev/null 2>&1
-sudo supervisorctl start hotspot.py >>/dev/null 2>&1
+
+sleep 15
+sudo $DEPLOY_PATH/start_hotspot_server >>/dev/null 2>&1 &
+sudo supervisorctl stop hotspot >>/dev/null 2>&1
+sudo supervisorctl start hotspot >>/dev/null 2>&1
 echo "True"

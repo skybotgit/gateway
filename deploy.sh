@@ -48,7 +48,7 @@ sudo ps aux | grep -i $DEPLOY_PATH/offline | awk {'print $2'} | sudo xargs kill 
 sudo ps aux | grep -i $DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $DEPLOY_PATH/heartbeat | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DIR/scripts/hotspot.py | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $DIR/scripts/hotspot | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $DEPLOY_PATH/s2r | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $DEPLOY_PATH/r2s | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $DEPLOY_PATH/init | awk {'print $2'} | sudo xargs kill -9
