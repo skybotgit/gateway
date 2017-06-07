@@ -15,7 +15,8 @@ for xfile in files:
 		c = t.st_ctime
 		
 		# delete file if older than cutoff
-		if c < cutoff:
-			os.remove("/opt/log/" + xfile)
+		if xfile != "skybot":
+			if c < cutoff:
+				os.remove("/opt/log/" + xfile)
 
 print "Remove old log files job executed successfully."
