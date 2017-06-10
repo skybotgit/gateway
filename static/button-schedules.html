@@ -1,7 +1,7 @@
 {% include "includes/header.html" %}
 <section data-ui-view="" class="view-container animate-fade-up">
     <div class="page page-dashboard ng-scope" data-ng-controller="DashboardCtrl">
-        <div class="clearfix"><h2 class="section-header ng-binding">Individual Button Schedules</h2></div>
+        <div class="clearfix"><h2 class="section-header ng-binding">Individual Device Schedules</h2></div>
         <!-- ngIf: schedule -->
         <div ng-if="schedule" class="schedule-data ng-scope">
             <section class="panel panel-default">
@@ -18,7 +18,7 @@
                                         <div class="th">Receiver Mac Id</div>
                                     </th>
                                     <th>
-                                        <div class="th">Button Number</div>
+                                        <div class="th">Device Number</div>
                                     </th>
                                     <th>
                                         <div class="th">Scheduled Time</div>
@@ -33,15 +33,15 @@
                                 </thead>
                                 <tbody>
 
-                                {% if results.button_schedules|length > 0 %}
-                                {% for button_schedule in results.button_schedules %}
+                                {% if results.device_schedules|length > 0 %}
+                                {% for device_schedule in results.device_schedules %}
                                 <tr>
-                                    <td>{{button_schedule['id']}}</td>
-                                    <td>{{button_schedule['receiver_mac_id']}}</td>
-                                    <td>{{button_schedule['number']}}</td>
-                                    <td>{{button_schedule['hour']}}:{{button_schedule['minute']}} {{button_schedule['am_pm']}}</td>
-                                    <td>{{ 'ON' if button_schedule['status'] == True else 'OFF' }}</td>
-                                    <td>{{button_schedule['speed']}}</td>
+                                    <td>{{device_schedule['id']}}</td>
+                                    <td>{{device_schedule['receiver_mac_id']}}</td>
+                                    <td>{{device_schedule['number']}}</td>
+                                    <td>{{device_schedule['hour']}}:{{device_schedule['minute']}} {{device_schedule['am_pm']}}</td>
+                                    <td>{{ 'ON' if device_schedule['status'] == True else 'OFF' }}</td>
+                                    <td>{{device_schedule['speed']}}</td>
                                 </tr>
                                 {% endfor %}
                                 {% endif %}

@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <a href="/product-refresh"
-                                   class="md-raised btn-w-md md-primary btn-lg md-button ng-scope md-ink-ripple">Refresh</a>
+                                   class="md-raised btn-w-md md-primary btn-lg md-device ng-scope md-ink-ripple">Refresh</a>
                             </div>
 
                         </div>
@@ -62,19 +62,19 @@
                                 </thead>
                                 <tbody>
 
-                                {% if results.buttons|length > 0 %}
-                                {% for button in results.buttons %}
+                                {% if results.devices|length > 0 %}
+                                {% for device in results.devices %}
                                 <tr>
-                                    <td>{{button['id']}}</td>
-                                    <td>{{button['receiver_mac_id']}}</td>
-                                    <td>{{button['number']}}</td>
-                                    <td>{{ 'ON' if button['status'] == True else 'OFF' }}</td>
-                                    <td>{{ 'ON' if button['desired_status'] == True else 'OFF' }}</td>
-                                    <td>{{button['speed']}}</td>
-                                    <td>{{ 'ON' if button['child_lock'] == True else 'OFF' }}</td>
-                                    <td>{{button['ack_status']}}</td>
-                                    <td>{{button['updated_by']}}</td>
-                                    <td>{{ button['updated_at'] }}</td>
+                                    <td>{{device['id']}}</td>
+                                    <td>{{device['receiver_mac_id']}}</td>
+                                    <td>{{device['number']}}</td>
+                                    <td>{{ 'ON' if device['status'] == True else 'OFF' }}</td>
+                                    <td>{{ 'ON' if device['desired_status'] == True else 'OFF' }}</td>
+                                    <td>{{device['speed']}}</td>
+                                    <td>{{ 'ON' if device['child_lock'] == True else 'OFF' }}</td>
+                                    <td>{{device['ack_status']}}</td>
+                                    <td>{{device['updated_by']}}</td>
+                                    <td>{{ device['updated_at'] }}</td>
                                 </tr>
                                 {% endfor %}
                                 {% endif %}
