@@ -6,9 +6,9 @@ DIR=/opt/skybot
 
 cd $DIR
 
-sudo git reset --hard
+sudo git reset --quiet --hard
 
-status=$(sudo git pull origin)
+status=$(sudo git pull origin --quiet)
 if [ "$status" == error:* ]; then
     echo $status
     exit

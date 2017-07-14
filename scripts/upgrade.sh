@@ -20,7 +20,7 @@ BIN_DEPLOY_PATH=/opt/bin
 sudo rm -Rf $WORKPLACE
 sudo mkdir -p $WORKPLACE
 cd $WORKPLACE
-sudo wget $S3URL
+sudo wget -nv $S3URL
 sudo tar -zxvf build.tar.gz ./
 sudo rm build.tar.gz
 
@@ -28,6 +28,7 @@ cd /opt
 sudo rm -Rf gateway
 
 sudo git clone $GITHUB_PATH
+cd gateway
 sudo git checkout --quiet version/$VERSION
 
 sudo supervisorctl stop all >> /dev/null
