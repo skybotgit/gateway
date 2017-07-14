@@ -2,7 +2,7 @@
 
 setCrons(){
     crontmp=/tmp/cron.skybot
-    echo "@reboot /opt/bin/init" >> $crontmp 2>&1
+    echo "@reboot sudo /opt/bin/init" >> $crontmp 2>&1
     echo "@reboot sudo python /opt/skybot/scripts/remove_older_logs.py" >> $crontmp 2>&1
     echo "0 0 1 * * ? sudo python /opt/skybot/scripts/remove_older_logs.py" >> $crontmp 2>&1
     echo "*/1 * * * * /opt/bin/scheduler" >> $crontmp
