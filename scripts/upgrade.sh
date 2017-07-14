@@ -31,7 +31,13 @@ sudo git clone $GITHUB_PATH
 cd gateway
 sudo git checkout --quiet version/$VERSION
 
-sudo supervisorctl stop all >> /dev/null
+sudo supervisorctl stop offline >> /dev/null
+sudo supervisorctl stop start_hotspot_server >> /dev/null
+sudo supervisorctl stop heartbeat >> /dev/null
+sudo supervisorctl stop hotspot >> /dev/null
+sudo supervisorctl stop r2s >> /dev/null
+sudo supervisorctl stop init >> /dev/null
+
 sudo rm -Rf /etc/supervisor/conf.d/*.conf
 sudo cp -Rf /opt/gateway/scripts/etc/supervisor/conf.d/* /etc/supervisor/conf.d/
 sudo cp -Rf /opt/gateway/scripts/core.sh /opt
@@ -49,18 +55,19 @@ sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} |
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/heartbeat | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/s2r | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/r2s | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/init | awk {'print $2'} | sudo xargs kill -9
 
 sleep 2
-sudo supervisorctl start all >> /dev/null
+sudo /opt/bin/init
+echo "True"
 sleep 5
 sudo sh $DIR/scripts/crontab.sh >> /dev/null
 sleep 5
-sudo /opt/bin/init
+sudo supervisorctl stop s2r >> /dev/null
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/s2r | awk {'print $2'} | sudo xargs kill -9
+sudo supervisorctl start all >> /dev/null
 sleep 5
-echo "True"
 sudo rm -Rf $DIR
 sudo mv /opt/gateway $DIR
 sudo chmod -Rf +x $DIR/scripts/upgrade.sh
