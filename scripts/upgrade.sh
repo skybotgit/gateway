@@ -35,7 +35,7 @@ BIN_DEPLOY_PATH=/opt/bin
 sudo rm -Rf $WORKPLACE
 sudo mkdir -p $WORKPLACE
 cd $WORKPLACE
-sudo wget -nv $S3URL
+sudo wget $S3URL
 sudo tar -zxvf build.tar.gz ./
 sudo rm build.tar.gz
 
