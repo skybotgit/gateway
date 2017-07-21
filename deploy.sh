@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SAMPLE_COMMAND='`sh deploy.sh ap-south-1 skybot-binaries qa debug 1.2`'
-if [ "$#" -ne 3 ]; then
+if [ "$#" -ne 5 ]; then
     echo "Invalid arguments passed"
     echo 'Sample Command :'$SAMPLE_COMMAND
     exit
@@ -19,7 +19,7 @@ then
     exit
 fi
 
-if [ "$TYPE" != 'debug' -a "$TYPE" != 'release' ]
+if [ "$MODE" != 'debug' -a "$MODE" != 'release' ]
 then
     echo "Argument should be from 'debug', 'release'"
     echo 'Sample Command :'$SAMPLE_COMMAND
