@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
-SAMPLE_COMMAND='`sh deploy.sh release 1.1`'
-if [ "$#" -ne 2 ]; then
+
+SAMPLE_COMMAND='`sh deploy.sh ap-south-1 skybot-binaries qa debug 1.2`'
+if [ "$#" -ne 3 ]; then
     echo "Invalid arguments passed"
     echo 'Sample Command :'$SAMPLE_COMMAND
     exit
 fi
+S3_REGION=$1
+S3_BUCKET=$2
+ENVIRONMENT=$3
+MODE=$4
+VERSION=$5
 
-TYPE=$1
-VERSION=$2
+if [ "$ENVIRONMENT" != 'qa' -a "$ENVIRONMENT" != 'prod' ]
+then
+    echo "Argument should be from 'qa', 'prod'"
+    echo 'Sample Command :'$SAMPLE_COMMAND
+    exit
+fi
 
 if [ "$TYPE" != 'debug' -a "$TYPE" != 'release' ]
 then
@@ -16,53 +26,64 @@ then
     exit
 fi
 
-DIR=/opt/skybot
-S3URL="https://s3-ap-south-1.amazonaws.com/skybot-binaries/${TYPE}/${VERSION}/build.tar.gz"
+S3URL="https://s3-${S3_REGION}.amazonaws.com/${S3_BUCKET}/${ENVIRONMENT}/${MODE}/${VERSION}/build.tar.gz"
+GITHUB_PATH='https://github.com/skybotgit/gateway.git'
 WORKPLACE=/opt/workplace
-DEPLOY_PATH=/opt/bin
+DIR=/opt/skybot
+BIN_DEPLOY_PATH=/opt/bin
 
 sudo rm -Rf $WORKPLACE
 sudo mkdir -p $WORKPLACE
 cd $WORKPLACE
-sudo wget $S3URL
+sudo wget -nv $S3URL
 sudo tar -zxvf build.tar.gz ./
 sudo rm build.tar.gz
 
-cd $DIR
-sudo supervisorctl stop all
-sudo git reset --hard
-sudo git pull origin
-sudo git pull origin version/$VERSION
+cd /opt
+sudo rm -Rf gateway
+
+sudo git clone $GITHUB_PATH
+cd gateway
+sudo git checkout --quiet version/$VERSION
+
+sudo supervisorctl stop offline >> /dev/null
+sudo supervisorctl stop start_hotspot_server >> /dev/null
+sudo supervisorctl stop heartbeat >> /dev/null
+sudo supervisorctl stop hotspot >> /dev/null
+sudo supervisorctl stop r2s >> /dev/null
+sudo supervisorctl stop init >> /dev/null
+
 sudo rm -Rf /etc/supervisor/conf.d/*.conf
-sudo cp -Rf $DIR/scripts/etc/supervisor/conf.d/* /etc/supervisor/conf.d/
-sudo rm -Rf $DEPLOY_PATH
-sudo mkdir -p $DEPLOY_PATH
-sudo cp -Rf $WORKPLACE/bin/* $DEPLOY_PATH
-sudo cp -Rf $DIR/static $DEPLOY_PATH
-sudo chown -Rf 0777 $DEPLOY_PATH
-sudo chmod -Rf +x $DEPLOY_PATH
+sudo cp -Rf /opt/gateway/scripts/etc/supervisor/conf.d/* /etc/supervisor/conf.d/
+sudo cp -Rf /opt/gateway/scripts/core.sh /opt
+sudo rm -Rf $BIN_DEPLOY_PATH
+sudo mkdir -p $BIN_DEPLOY_PATH
+sudo cp -Rf $WORKPLACE/bin/* $BIN_DEPLOY_PATH
+sudo cp -Rf /opt/gateway/static $BIN_DEPLOY_PATH
+sudo chown -Rf 0777 $BIN_DEPLOY_PATH
+sudo chmod -Rf +x $BIN_DEPLOY_PATH
 sudo rm -Rf $WORKPLACE
-sudo hotspotd stop
-sudo ps aux | grep -i $DEPLOY_PATH/offline | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DEPLOY_PATH/offline | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DEPLOY_PATH/heartbeat | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DIR/scripts/hotspot | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DEPLOY_PATH/s2r | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DEPLOY_PATH/r2s | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $DEPLOY_PATH/init | awk {'print $2'} | sudo xargs kill -9
+sudo hotspotd stop >> /dev/null
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/offline | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/offline | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/heartbeat | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/r2s | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/init | awk {'print $2'} | sudo xargs kill -9
 
 sleep 2
-sudo supervisorctl reload
+sudo /opt/bin/init
+echo "True"
 sleep 5
-sudo supervisorctl status
-sudo sh $DIR/scripts/crontab.sh
-echo "SkyBot installed successfully"
-echo "check logs with tail -f /opt/log/skybot"
+sudo sh $DIR/scripts/crontab.sh >> /dev/null
+sleep 5
+sudo supervisorctl stop s2r >> /dev/null
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/s2r | awk {'print $2'} | sudo xargs kill -9
+sudo supervisorctl start all >> /dev/null
+sleep 5
+sudo rm -Rf $DIR
+sudo mv /opt/gateway $DIR
+sudo chmod -Rf +x $DIR/scripts/upgrade.sh
 sudo cp -Rf $DIR/scripts/upgrade.sh /opt
-sudo chmod -Rf +x /opt/upgrade.sh
-if [ "$TYPE" = 'debug' ]
-then
-    tail -f /opt/log/skybot
-fi

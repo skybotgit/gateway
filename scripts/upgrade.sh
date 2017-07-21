@@ -11,6 +11,21 @@ S3_BUCKET=$2
 ENVIRONMENT=$3
 MODE=$4
 VERSION=$5
+
+if [ "$ENVIRONMENT" != 'qa' -a "$ENVIRONMENT" != 'prod' ]
+then
+    echo "Argument should be from 'qa', 'prod'"
+    echo 'Sample Command :'$SAMPLE_COMMAND
+    exit
+fi
+
+if [ "$TYPE" != 'debug' -a "$TYPE" != 'release' ]
+then
+    echo "Argument should be from 'debug', 'release'"
+    echo 'Sample Command :'$SAMPLE_COMMAND
+    exit
+fi
+
 S3URL="https://s3-${S3_REGION}.amazonaws.com/${S3_BUCKET}/${ENVIRONMENT}/${MODE}/${VERSION}/build.tar.gz"
 GITHUB_PATH='https://github.com/skybotgit/gateway.git'
 WORKPLACE=/opt/workplace
