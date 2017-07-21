@@ -19,7 +19,7 @@ then
     exit
 fi
 
-if [ "$TYPE" != 'debug' -a "$TYPE" != 'release' ]
+if [ "$MODE" != 'debug' -a "$MODE" != 'release' ]
 then
     echo "Argument should be from 'debug', 'release'"
     echo 'Sample Command :'$SAMPLE_COMMAND
