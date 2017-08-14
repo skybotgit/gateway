@@ -63,10 +63,10 @@ sleep 2
 File_Path=/tmp/wpa_supplicant.conf
 Target_File_Path=/etc/wpa_supplicant/wpa_supplicant.conf
 sudo cp -Rf /opt/skybot/scripts$Target_File_Path /tmp
-replace_string $File_Path "ssid" $SSID
-replace_string $File_Path "psk" $PSK
+replace_string $File_Path "ssid" "${SSID}"
+replace_string $File_Path "psk" "${PSK}"
 #replace_string $File_Path "proto" $PROTO
-replace_string $File_Path "key_mgmt" $KEY_MGMT
+replace_string $File_Path "key_mgmt" "${KEY_MGMT}"
 #replace_string $File_Path "pairwise" $PAIRWISE
 #replace_string $File_Path "auth_alg" $AUTH_ALG
 
