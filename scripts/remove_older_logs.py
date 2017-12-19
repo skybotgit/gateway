@@ -3,7 +3,7 @@
 # run by crontab
 # removes any files in /opt/log/ older than 3 days
 
-import os, time
+import os, time, subprocess
 
 now = time.time()
 cutoff = now - (3 * 86400)
@@ -18,5 +18,7 @@ for xfile in files:
 		if xfile != "skybot":
 			if c < cutoff:
 				os.remove("/opt/log/" + xfile)
+				
+subprocess.call(['sudo', 'supervisorctl', 'reload'])
 
 print "Remove old log files job executed successfully."
