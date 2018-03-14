@@ -4,4 +4,8 @@ update_config=1
 network={
         ssid="{{ssid}}"
         psk="{{psk}}"
+        key_mgmt={{key_mgmt}}
+        proto={{proto}}
+        pairwise={{pairwise}}
+        auth_alg={{auth_alg}}
 }

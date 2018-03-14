@@ -24,10 +24,10 @@ fi
 
 SSID=$1
 PSK=$2
-#PROTO=$3
+PROTO="RSN"
 KEY_MGMT="WPA-PSK"
-#PAIRWISE=$5
-#AUTH_ALG=$6
+PAIRWISE="CCMP"
+AUTH_ALG="OPEN"
 
 #if [ "$PROTO" != 'RSN' -a "$PROTO" != 'WPA' ]
 #then
@@ -65,10 +65,10 @@ Target_File_Path=/etc/wpa_supplicant/wpa_supplicant.conf
 sudo cp -Rf /opt/skybot/scripts$Target_File_Path /tmp
 replace_string $File_Path "ssid" "${SSID}"
 replace_string $File_Path "psk" "${PSK}"
-#replace_string $File_Path "proto" $PROTO
 replace_string $File_Path "key_mgmt" "${KEY_MGMT}"
-#replace_string $File_Path "pairwise" $PAIRWISE
-#replace_string $File_Path "auth_alg" $AUTH_ALG
+replace_string $File_Path "proto" "${PROTO}"
+replace_string $File_Path "pairwise" "${PAIRWISE}"
+replace_string $File_Path "auth_alg" "${AUTH_ALG}"
 
 sudo chown root:root $File_Path
 sudo chmod 600 $File_Path
