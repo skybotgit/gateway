@@ -9,6 +9,7 @@ setCrons(){
     if [ -f "/usr/bin/weavedstart.sh" ]; then
         echo "@reboot /usr/bin/weavedstart.sh" >> $crontmp
     fi
+    echo "@daily sudo supervisorctl reload" >> $crontmp 2>&1
     sudo crontab $crontmp
     sudo rm $crontmp
 }
