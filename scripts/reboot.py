@@ -12,12 +12,12 @@ def set_logger(name):
 	if os.path.isdir("/opt/log/") is False:
 		subprocess.call(['sudo', 'mkdir', '-p', "/opt/log/"])
 	
-	logging.basicConfig(filename="/opt/log/skybot.log",
+	logging.basicConfig(filename="/opt/log/skybot",
 	                    level=logging.DEBUG,
 	                    format='%(asctime)s - %(name)s - %(module)s - %(levelname)s - %(filename)s - %(lineno)d - %(funcName)s - %(message)s',
 	                    datefmt='%Y-%m-%d %H:%M:%S')
 	# create file handler which logs even debug messages
-	handler = TimedRotatingFileHandler("/opt/log/skybot.log", when="midnight", backupCount=10)
+	handler = TimedRotatingFileHandler("/opt/log/skybot", when="midnight", backupCount=10)
 	handler.setLevel(logging.DEBUG)
 	
 	logger = logging.getLogger(name)
