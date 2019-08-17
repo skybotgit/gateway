@@ -33,16 +33,16 @@ set_logger('reboot')
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 try:
-	GPIO.setup(16, GPIO.OUT, initial=GPIO.HIGH)
-	GPIO.setup(17, GPIO.OUT, initial=GPIO.HIGH)
+	GPIO.setup(16, GPIO.OUT, initial=GPIO.LOW)
+	GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW)
 	i = 1
 	while i < 2:
 		i += 1
 		logging.debug("Gateway is restarting....")
 		sleep(5)
-		GPIO.output(17, GPIO.LOW)
+		GPIO.output(17, GPIO.HIGH)
 		sleep(2)
-		GPIO.output(16, GPIO.LOW)
+		GPIO.output(16, GPIO.HIGH)
 		sleep(1)
 except Exception as error:
 	logging.debug("Error occurred")
