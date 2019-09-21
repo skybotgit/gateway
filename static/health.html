@@ -106,26 +106,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group ng-scope">
-                                        <label class="col-sm-5 ng-binding">Server to Receiver Flow</label>
+                                        <label class="col-sm-5 ng-binding">Communication Flow</label>
                                         <div class="col-sm-6">
-                                            {% if results.s2r_running.status %}
+                                            {% if results.communication_running.status %}
                                             <span class="status alert-success">Running</span>
-                                            <span>{{results.s2r_running.message}}</span>
+                                            <span>{{results.communication_running.message}}</span>
                                             {% else %}
                                             <span class="status alert-danger">Stopped</span>
-                                            <span>{{results.s2r_running.message}}</span>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                    <div class="form-group ng-scope">
-                                        <label class="col-sm-5 ng-binding">Receiver to Server Flow</label>
-                                        <div class="col-sm-6">
-                                            {% if results.r2s_running.status %}
-                                            <span class="status alert-success">Running</span>
-                                            <span>{{results.r2s_running.message}}</span>
-                                            {% else %}
-                                            <span class="status alert-danger">Stopped</span>
-                                            <span>{{results.r2s_running.message}}</span>
+                                            <span>{{results.communication_running.message}}</span>
                                             {% endif %}
                                         </div>
                                     </div>

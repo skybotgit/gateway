@@ -50,7 +50,7 @@ sudo supervisorctl stop offline >> /dev/null
 sudo supervisorctl stop start_hotspot_server >> /dev/null
 sudo supervisorctl stop heartbeat >> /dev/null
 sudo supervisorctl stop hotspot >> /dev/null
-sudo supervisorctl stop r2s >> /dev/null
+sudo supervisorctl stop communication >> /dev/null
 sudo supervisorctl stop init >> /dev/null
 
 sudo rm -Rf /etc/supervisor/conf.d/*.conf
@@ -70,7 +70,6 @@ sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} |
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/heartbeat | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/r2s | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/init | awk {'print $2'} | sudo xargs kill -9
 
 sleep 2
@@ -80,7 +79,7 @@ sleep 5
 sudo sh $DIR/scripts/crontab.sh >> /dev/null
 sleep 5
 sudo supervisorctl stop s2r >> /dev/null
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/s2r | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/communication | awk {'print $2'} | sudo xargs kill -9
 sudo supervisorctl start all >> /dev/null
 sleep 5
 sudo rm -Rf $DIR
