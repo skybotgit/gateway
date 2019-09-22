@@ -46,10 +46,6 @@ sudo git clone $GITHUB_PATH
 cd gateway
 sudo git checkout --quiet version/$VERSION
 
-sudo supervisorctl stop start_hotspot_server >> /dev/null
-sudo supervisorctl stop hotspot >> /dev/null
-sudo supervisorctl stop init >> /dev/null
-
 sudo rm -Rf /etc/supervisor/conf.d/*.conf
 sudo cp -Rf /opt/gateway/scripts/etc/supervisor/conf.d/* /etc/supervisor/conf.d/
 sudo cp -Rf /opt/gateway/scripts/core.sh /opt
@@ -61,9 +57,8 @@ sudo chown -Rf 0777 $BIN_DEPLOY_PATH
 sudo chmod -Rf +x $BIN_DEPLOY_PATH
 sudo rm -Rf $WORKPLACE
 sudo hotspotd stop >> /dev/null
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot_server | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot_server | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/init | awk {'print $2'} | sudo xargs kill -9
 
 sleep 2

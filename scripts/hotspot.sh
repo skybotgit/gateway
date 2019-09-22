@@ -2,8 +2,8 @@
 
 DEPLOY_PATH=/opt/bin
 sudo hotspotd stop >>/dev/null 2>&1
-sudo ps aux | grep -i $DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9 >>/dev/null 2>&1
-sudo ps aux | grep -i $DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9 >>/dev/null 2>&1
+sudo ps aux | grep -i $DEPLOY_PATH/hotspot_server | awk {'print $2'} | sudo xargs kill -9 >>/dev/null 2>&1
+sudo ps aux | grep -i $DEPLOY_PATH/hotspot_server | awk {'print $2'} | sudo xargs kill -9 >>/dev/null 2>&1
 sudo rm -rf /etc/wpa_supplicant/wpa_supplicant.conf >>/dev/null 2>&1
 Temp_File_Path=/tmp/wpa_supplicant.conf
 Target_File_Path=/etc/wpa_supplicant/wpa_supplicant.conf
@@ -21,7 +21,5 @@ sudo ifup wlan0 >>/dev/null 2>&1
 sudo hotspotd start >>/dev/null 2>&1
 
 sleep 15
-sudo $DEPLOY_PATH/start_hotspot_server >>/dev/null 2>&1 &
-sudo supervisorctl stop hotspot >>/dev/null 2>&1
-sudo supervisorctl start hotspot >>/dev/null 2>&1
+sudo $DEPLOY_PATH/hotspot_server >>/dev/null 2>&1 &
 echo "True"
