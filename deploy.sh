@@ -68,6 +68,8 @@ sleep 5
 sudo sh $DIR/scripts/crontab.sh >> /dev/null
 sleep 5
 sudo supervisorctl stop skybot >> /dev/null
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot_thread.py | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot_thread.py | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/skybot | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/skybot | awk {'print $2'} | sudo xargs kill -9
 sudo supervisorctl start all >> /dev/null
