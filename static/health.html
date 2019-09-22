@@ -118,30 +118,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group ng-scope">
-                                        <label class="col-sm-5 ng-binding">Offline Flow</label>
-                                        <div class="col-sm-6">
-                                            {% if results.offline_running.status %}
-                                            <span class="status alert-success">Running</span>
-                                            <span>{{results.offline_running.message}}</span>
-                                            {% else %}
-                                            <span class="status alert-danger">Stopped</span>
-                                            <span>{{results.offline_running.message}}</span>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                    <div class="form-group ng-scope">
-                                        <label class="col-sm-5 ng-binding">HeartBeat</label>
-                                        <div class="col-sm-6">
-                                            {% if results.heartbeat_running.status %}
-                                            <span class="status alert-success">Running</span>
-                                            <span>{{results.heartbeat_running.message}}</span>
-                                            {% else %}
-                                            <span class="status alert-danger">Stopped</span>
-                                            <span>{{results.heartbeat_running.message}}</span>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                    <div class="form-group ng-scope">
                                         <label class="col-sm-5 ng-binding">Hotspot Program</label>
                                         <div class="col-sm-6">
                                             {% if results.hotspot_running.status %}

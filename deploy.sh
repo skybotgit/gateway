@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SAMPLE_COMMAND='`sh deploy.sh ap-south-1 skybot-binaries qa debug 1.2`'
+SAMPLE_COMMAND='`sh deploy.sh ap-south-1 skybot-binaries prod debug 1.2`'
 if [ "$#" -ne 5 ]; then
     echo "Invalid arguments passed"
     echo 'Sample Command :'$SAMPLE_COMMAND
@@ -46,9 +46,7 @@ sudo git clone $GITHUB_PATH
 cd gateway
 sudo git checkout --quiet version/$VERSION
 
-sudo supervisorctl stop offline >> /dev/null
 sudo supervisorctl stop start_hotspot_server >> /dev/null
-sudo supervisorctl stop heartbeat >> /dev/null
 sudo supervisorctl stop hotspot >> /dev/null
 sudo supervisorctl stop init >> /dev/null
 
@@ -63,11 +61,8 @@ sudo chown -Rf 0777 $BIN_DEPLOY_PATH
 sudo chmod -Rf +x $BIN_DEPLOY_PATH
 sudo rm -Rf $WORKPLACE
 sudo hotspotd stop >> /dev/null
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/offline | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/offline | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/start_hotspot_server | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/heartbeat | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/hotspot | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/init | awk {'print $2'} | sudo xargs kill -9
 
@@ -78,6 +73,7 @@ sleep 5
 sudo sh $DIR/scripts/crontab.sh >> /dev/null
 sleep 5
 sudo supervisorctl stop communication >> /dev/null
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/communication | awk {'print $2'} | sudo xargs kill -9
 sudo ps aux | grep -i $BIN_DEPLOY_PATH/communication | awk {'print $2'} | sudo xargs kill -9
 sudo supervisorctl start all >> /dev/null
 sleep 5
