@@ -106,14 +106,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group ng-scope">
-                                        <label class="col-sm-5 ng-binding">Communication Flow</label>
+                                        <label class="col-sm-5 ng-binding">Skybot Running</label>
                                         <div class="col-sm-6">
-                                            {% if results.communication_running.status %}
+                                            {% if results.skybot_running.status %}
                                             <span class="status alert-success">Running</span>
-                                            <span>{{results.communication_running.message}}</span>
+                                            <span>{{results.skybot_running.message}}</span>
                                             {% else %}
                                             <span class="status alert-danger">Stopped</span>
-                                            <span>{{results.communication_running.message}}</span>
+                                            <span>{{results.skybot_running.message}}</span>
                                             {% endif %}
                                         </div>
                                     </div>

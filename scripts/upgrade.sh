@@ -46,7 +46,7 @@ sudo git clone $GITHUB_PATH
 cd gateway
 sudo git checkout --quiet version/$VERSION
 
-sudo supervisorctl stop communication >> /dev/null
+sudo supervisorctl stop skybot >> /dev/null
 sudo supervisorctl stop init >> /dev/null
 
 sudo rm -Rf /etc/supervisor/conf.d/*.conf
@@ -71,8 +71,8 @@ sleep 5
 sudo sh $DIR/scripts/crontab.sh >> /dev/null
 sleep 5
 sudo supervisorctl stop s2r >> /dev/null
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/communication | awk {'print $2'} | sudo xargs kill -9
-sudo ps aux | grep -i $BIN_DEPLOY_PATH/communication | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/skybot | awk {'print $2'} | sudo xargs kill -9
+sudo ps aux | grep -i $BIN_DEPLOY_PATH/skybot | awk {'print $2'} | sudo xargs kill -9
 sudo supervisorctl start all >> /dev/null
 sleep 5
 sudo rm -Rf $DIR
